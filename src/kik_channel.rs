@@ -27,6 +27,7 @@ use crate::kik_feeder::FeederRecycler;
 /// -Construct a new kik_channel DeliveryService instance using DeliveryService::new(your_channel_config_name)
 /// 
 /// # Methods
+/// 
 /// Be wary that some sets will change others. The titles above the list might change the values of the ones below.
 /// 
 /// 
@@ -115,6 +116,7 @@ impl ChannelConfig{
 /// Main structure for the entire crate. Creates the channels, workers and feeder.
 /// 
 /// How to use it:
+/// 
 /// -Call DeliveryService<T, R, S>::default() to construct an instance for given T, R, S traits that use default values.
 /// 
 /// -Feed initial values with DeliveryService<T, R, S>::feed_feeder(input_vec: &mut Vec<R>)
