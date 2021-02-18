@@ -1,15 +1,15 @@
 //! # Messages
 //! 
 //! Traits for defining how the channel should transfer, work and retrieve the messages.
-//! Users have to implement these traits in their data structure before using the channel.
+//! Users have to implement these traits in their data structure before using the *DeliveryService*.
 //! 
-//! The type with the "Message" Trait must be able to hold types that implement "MessageData" and "MessageInput" as well.
+//! The type with the *Message* trait must be able to hold types that implement *MessageData* and *MessageInput* as well.
 //! 
-//! "Message" is what the channels share. "MessageInput" is what the feeder sets in each message.
-//! "MessageData" is what the channel returns when the user iterates through it.
+//! *Message* is what the channels share. *MessageInput* is what *FeederRecycler* sets in each *Message*.
+//! *MessageData* is what the channel returns when the user iterates through it.
 //! 
-//! The data shared must be "Sync" and "Send". Must have 'static lifetimes, must have "Clone" trait, 
-//! but doesn't need to be "Copy". I haven't tested if being "Copy" will break drop behaviors.
+//! The *MessageData* shared must be *Sync* and *Send*. Must have *'static* lifetimes, must have *Clone* trait, 
+//! but doesn't need to be *Copy*. I haven't tested if being *Copy* will break *Drop* behaviors.
 //! But if it did, compiler would probably notice.
 //! 
 //! 

@@ -16,15 +16,15 @@ use crate::kik_message::{Message, MessageInput, MessageData};
 use crate::kik_worker::Worker;
 use crate::kik_feeder::FeederRecycler;
 
-/// To be used when the user needs to set specific configurations before creating a kik_channel. Optional type.
+/// To be used when the user needs to set specific configurations before creating a *DeliveryService* channel. Optional type.
 /// 
 /// # How to use it
 /// 
-/// -Create a new instance calling ChannelConfig::default()
+/// - Create a new instance using *ChannelConfig::default()*
 /// 
-/// -Set custom values for it.
+/// - Set custom values for it.
 /// 
-/// -Construct a new kik_channel DeliveryService instance using DeliveryService::new(your_channel_config_name)
+/// - Construct a new *DeliveryService* instance using *DeliveryService::new(your_channel_config_name)*
 /// 
 /// # Methods
 /// 
@@ -117,16 +117,17 @@ impl ChannelConfig{
 /// 
 /// How to use it:
 /// 
-/// -Call DeliveryService<T, R, S>::default() to construct an instance for given T, R, S traits that use default values.
+/// - Call *DeliveryService<T, R, S>::default()* to construct an instance for given *T*, *R*, *S* traits that use default values.
 /// 
-/// -Feed initial values with DeliveryService<T, R, S>::feed_feeder(input_vec: &mut Vec<R>)
+/// - Feed initial values with *DeliveryService<T, R, S>::feed_feeder(input_vec: &mut Vec<R>)*
 /// 
-/// -Iterate through a mutable reference of this object. "for i in &mut delivery_service{}"
+/// -Iterate through a mutable reference of this object. "*for i in &mut delivery_service{}*"
 /// 
-/// -Feed more values and iterate again to get more T results.
+/// -Feed more values and iterate again to get more *T* results.
 /// 
 /// 
 /// 
+
 pub struct DeliveryService<T, R, S>  where 
 T: MessageData + 'static,
 R: MessageInput<T> + 'static,

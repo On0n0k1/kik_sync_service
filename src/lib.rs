@@ -1,26 +1,26 @@
-//! # Kik_sync_service
+//! # kik_sync_service
 //! 
 //! A synchronous work system for dealing with small inputs that lead to heavy workloads.
 //! 
 //! 
 //! ## Why Use This
 //! 
-//! This "message + worker thread" system was built for the following situations:
+//! This "*Message* + *worker* thread" system was built for the following situations:
 //! 
-//! -When there is a small sample of inputs that can generate a very large amount of data.
+//! - When there is a small sample of inputs that can generate a very large amount of data.
 //! 
-//! -When a small input can generate a very heavy workload.
+//! - When a small input can generate a very heavy workload.
 //! 
-//! -When there is no need to store the data generated in the memory.
+//! - When there is no need to store the data generated in the memory.
 //! 
-//! -When a system must process a stream of data and send it directly somewhere else. 
+//! - When a system must process a stream of data and send it directly somewhere else. 
 //! 
-//! -As in sound processing, image processing, handling network requests, etc.
+//! - I.E. sound processing, image processing, handling network requests, etc.
 //! 
-//! -When generating individual frames for some GUI.
+//! - When generating individual frames for some GUI.
 //! 
 //! 
-//! The system consists of several workers and a single thread sending and retrieving messages. If the (work time)/message is high enough,
+//! The system consists of several *Worker*s and a single thread (*FeederRecycler*) sending and retrieving messages. If the (work time)/message is high enough,
 //! this single thread handling input/output might have enough time to store data in the memory without slowing down the workers. 
 //! It's up to the creativity of each user.
 //! 
@@ -28,12 +28,13 @@
 //! 
 //! This is huge because we need to first create a struct that implements *MessageData*, then another for *MessageInput*, then another for *Message*.
 //! 
-//! But what kind of data and how it's worked is all up to the user. Just create the DeliveryService channel, 
-//! using default values or a custom ChannelConfig argument. Then create a vector of the input data you need. 
-//! Feed that data into the channel calling "feed_feeder" method. As soon as data is feed workers will start 
+//! But what kind of data and how it's worked is all up to the user. Just create the *DeliveryService* channel, 
+//! use default values or a custom *ChannelConfig* argument. Then create a vector of the input data you need. 
+//! Feed that data into the *DeliveryService* by calling "*feed_feeder*" method. As soon as data starts being fed *Worker*s will work.
 //! working. Finally start getting the results with a "for" call to a mutable reference of the channel. 
-//! Repeat feed + iterate as many times as needed.
+//! Repeat feed and iterate as many times as needed.
 //! 
+//! '''
 //! 
 //!     use kik_sync_service::message::{Message, MessageData, MessageInput};
 //!     use kik_sync_service::channel::{DeliveryService};
@@ -257,6 +258,8 @@
 //!             counter += 1;
 //!         }
 //!     }
+//! 
+//! '''
 //! 
 
 // This crate is a library

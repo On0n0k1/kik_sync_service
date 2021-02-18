@@ -1,34 +1,34 @@
 //! # Feeder
 //! 
-//! Used by kik_channel for sending/retrieving messages to/from workers. Not meant to be used directly.
+//! Used by kik_channel's *DeliveryService* for sending/retrieving messages to/from workers. Not meant to be used directly.
 //! 
 //! 
 //! # How it works
-//! It's behavior can be checked first through it's "Iterator" implementation. The user iterates through kik_channel, which calls kik_feeder's "next" method.
-//! kik_feeder will check how many messages are roaming through it's system (counted through how many "gets" and "sends" were successful). If there are not enough messages,
-//! it will send more in the system. If there are no messages to send and no messages to retrieve, return None.
+//! It's behavior can be checked first through it's *Iterator* implementation. The user iterates through *DeliveryService*, which calls *kik_feeder*'s *next* method.
+//! *kik_feeder* will check how many *Messages* are roaming through it's system (counted based on how many "gets" and "sends" were successful). If there are not enough *Messages*,
+//! it will send more in the system. If there are no *Message*s to send and no *Message*s to retrieve, return None.
 //! 
-//! If there are messages to retrieve, it will block until a worker sends it in the "deliverer" channel. A deadlock might occur if the thread panics while working.
-//! So be aware that the implementation of the message relies completely on the user.
+//! If there are *Message*s to retrieve, it will block until a *Worker* leave it in the *deliverer* channel. A deadlock might occur if the thread panics while working.
+//! So be aware that the implementation of the *Message* relies completely on the user.
 //! 
-//! Once it retrieves a message from the deliverer. The feeder will call the message's implementation of clone_message_data to get a copy of the data to send back 
-//! to the iterator. Before returning the message_data, it will try to reset the message that it's holding with the next input waiting to be sent back to the system. 
+//! Once it retrieves a *Message* from the *deliverer*. The feeder will call the *Message*'s implementation of *clone_message_data* to get a copy of the *MessageData* to send back 
+//! to the iterator. Before returning the *MessageData*, it will try to reset the *Message* that it's holding with the next input waiting to be sent back to the system. 
 //! This is done to reduce calls to memory management in the system.
 //! 
 //! 
 //! # Tips
-//! Use large packs of data in each message, so there's the least number of messages possible. Less messages = less calls to the Arc pointer, which is really slow.
+//! Use large packs of data in each *Message*, so there's the least number of *Messages* possible. Less *Messages* = less calls to the *Arc pointer*, which is really slow.
 //! 
 //! 
 //! # Contribute
-//! This would be optimal if instead of using memory ownership, the threads and workers focused entirely on borrows. 
-//! The problem would then be code complexity that includes lifetimes. But messages could become a lot lighter if they only held references to memory, 
+//! This would be optimal if instead of using memory ownership, the threads and *Worker*s focused entirely on borrows. 
+//! The problem would then be code complexity due to lifetimes. But *Messages* could become a lot lighter if they only held references to memory, 
 //! saving stack space. Maybe the code would become so complex that it should be used in another crate entirely. Not sure yet.
 //! 
 //! 
 //! # Panics!
-//! Will panic if it tries to send a message to inserter but receive a "disconnect" error. The order for drop is kik_channel then kik_feeder then kik_worker.
-//! When kik_channel drops, all the others will do the same without panicking. But if channel is disconnected, then some unexpected event happened.
+//! Will panic if it tries to send a *Message* to *inserter* but receive a *std::sync::mpsc::TrySendError::Disconnected* error. The order for drop is *DeliveryService* then *FeederRecycler* then *Worker*.
+//! When *DeliveryService* drops, all the others will do the same without panicking. But if channel is disconnected, then some unexpected event happened.
 //! 
 //! 
 

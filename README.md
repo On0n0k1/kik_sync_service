@@ -8,15 +8,18 @@ Synchronous Rust library for executing customized multi-threaded operations.
 This is just a crate that creates two channels and several
  workers for synchronous operations. The catch is that the 
  messages are built by the user. Make a struct to work as the 
- data you recover (MessageData), a struct to work as the input 
- you need (MessageInput), and include them in the message that 
- you will share between the threads (Message).
+ data you recover (*MessageData*), a struct to work as the input 
+ you need (*MessageInput*), and include them in the message that 
+ you will share between the threads (*Message*).
 
 After that you just need to add a vector of inputs and get the 
-results using a for loop. Repeating any ammount of times as needed.
+results using a for loop. Repeating any number of times needed.
 
 This method doesn't demand much memory usage, and allow the user 
 to push the cpu as hard as possible.
+
+Threads can be better configured using *ChannelConfig* argument for 
+each *DeliveryService* channel.
 
 
 ## How to use
@@ -89,15 +92,15 @@ The traits that the user needs to implement are here:
 '''
 
 
-After the types are implemented. Construct a new channel by calling 
+After the types are implemented. Construct a new channel by calling something like
 
-DeliveryService::default(), 
+*let delivery_service = DeliveryService::default()*, 
 
 feed a vector of inputs by calling 
 
-DeliveryService::feed_feeder(&mut self, input_vec: &mut Vec<R>)
+*delivery_service.feed_feeder(input_vec: &mut Vec<R>)*
 
-and iterate over &mut delivery_service to get the MessageData you implemented.
+and iterate over *&mut delivery_service* to get the *MessageData* you implemented.
 
 Takes around 100 lines to set all the types. 
 But once the types are set, only 5-10 lines are needed to work.
