@@ -6,6 +6,7 @@ authors = ["On0n0k1 <stiltztinkerstein@gmail.com>"]
 description = "A synchronous threading worker channel for generating the results you want with the data you need."
 edition = "2018"
 repository = "https://github.com/On0n0k1/kik_sync_service.git"
+homepage = "https://on0n0k1.github.io/Projects/Rust%20crates/kik_sync_service/doc/kik_sync_service/index.html"
 keywords = ["mpsc", "sync", "buffer", "thread", "stream"]
 categories = ["concurrency", "embedded", "hardware-support", "multimedia", "rust-patterns"]
 
