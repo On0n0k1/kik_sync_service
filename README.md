@@ -24,6 +24,7 @@ to push the cpu as hard as possible.
 The traits that the user needs to implement are here:
 
 '''
+
     use std::marker::{Send, Sync};
 
     /// MessageData holds the resource type that will be returned 
@@ -84,6 +85,7 @@ The traits that the user needs to implement are here:
         fn new() -> Self;
 
     }
+
 '''
 
 
@@ -105,6 +107,7 @@ But once the types are set, only 5-10 lines are needed to work.
 Here is an example of the crate being used:
 
 ''' 
+
     #[cfg(test)]
     mod tests{
         // replace crate for kik_sync_channel
@@ -329,6 +332,7 @@ Here is an example of the crate being used:
             }
         }
     }
+
 
 '''
 
