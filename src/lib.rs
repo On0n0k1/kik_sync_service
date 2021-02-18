@@ -25,7 +25,8 @@
 //! It's up to the creativity of each user.
 //! 
 //! # Example
-//! Example is huge because we need to first create a struct that implements MessageData, then another for MessageInput, then another for Message.
+//! 
+//! This is huge because we need to first create a struct that implements *MessageData*, then another for *MessageInput*, then another for *Message*.
 //! 
 //! But what kind of data and how it's worked is all up to the user. Just create the DeliveryService channel, 
 //! using default values or a custom ChannelConfig argument. Then create a vector of the input data you need. 

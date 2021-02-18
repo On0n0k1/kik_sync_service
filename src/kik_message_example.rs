@@ -14,7 +14,6 @@
 mod tests{
     use crate::message::{Message, MessageData, MessageInput};
     use crate::channel::{DeliveryService};
-    // use crate::*;
 
     // What type of data should be returned.
     pub struct MessageArray{
@@ -120,7 +119,7 @@ mod tests{
 
             // Not very creative right now, each operation will count from 0 to 1024.
             // This is just to show that the results are being made and returned. I'll use it to generate fractals in the next project.
-            // I'm thankful for anyone willing to offer a better example for this later.
+            // I'm grateful for anyone offering a more straightforward example.
             // Counting in the first line will go like 0 1 2 3 ... 30 31 1 2 3 ...
             // Counting in the second line will go like 32 33 34 35 ... 59 60 61 62 63 ...
             // And so forth until 1023 in the last line.
