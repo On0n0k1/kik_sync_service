@@ -158,7 +158,7 @@ R: MessageInput<T> + 'static,
 S: Message<T, R> + Sync + Send + Clone + 'static,
 {
     /// Create a new DeliveryService instance using details set in ChannelConfig. If there's no need to set specific configuration, call DeliveryService::default() instead.
-    fn new(config: ChannelConfig) -> Self{
+    pub fn new(config: ChannelConfig) -> Self{
         let stack_size = config.get_stack_size();
         let worker_number = config.get_worker_number();
         let thread_vec: Vec<JoinHandle<()>> = Vec::with_capacity(worker_number);

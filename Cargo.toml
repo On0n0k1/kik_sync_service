@@ -1,6 +1,6 @@
 [package]
 name = "kik_sync_service"
-version = "0.7.2"
+version = "0.7.3"
 license = "MIT"
 authors = ["On0n0k1 <stiltztinkerstein@gmail.com>"]
 description = "A synchronous threading worker channel for generating the results you want with the data you need."
