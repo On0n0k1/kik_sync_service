@@ -26,7 +26,6 @@ each *DeliveryService* channel.
 
 The traits that the user needs to implement are here:
 
-'''
 
     use std::marker::{Send, Sync};
 
@@ -89,7 +88,6 @@ The traits that the user needs to implement are here:
 
     }
 
-'''
 
 
 After the types are implemented. Construct a new channel by calling something like
@@ -109,7 +107,6 @@ But once the types are set, only 5-10 lines are needed to work.
 
 Here is an example of the crate being used:
 
-''' 
 
     #[cfg(test)]
     mod tests{
@@ -337,7 +334,6 @@ Here is an example of the crate being used:
     }
 
 
-'''
 
 
 ## Contribute

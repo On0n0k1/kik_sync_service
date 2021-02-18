@@ -117,13 +117,13 @@ impl ChannelConfig{
 /// 
 /// How to use it:
 /// 
-/// - Call *DeliveryService<T, R, S>::default()* to construct an instance for given *T*, *R*, *S* traits that use default values.
+/// - Call *DeliveryService<T, R, S>::default()* to construct an instance for given **T**, **R**, **S** traits that use default values.
 /// 
 /// - Feed initial values with *DeliveryService<T, R, S>::feed_feeder(input_vec: &mut Vec<R>)*
 /// 
-/// -Iterate through a mutable reference of this object. "*for i in &mut delivery_service{}*"
+/// - Iterate through a mutable reference of this object. "*for i in &mut delivery_service{}*"
 /// 
-/// -Feed more values and iterate again to get more *T* results.
+/// - Feed more values and iterate again to get more **T** results.
 /// 
 /// 
 /// 

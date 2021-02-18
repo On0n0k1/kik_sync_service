@@ -31,10 +31,9 @@
 //! But what kind of data and how it's worked is all up to the user. Just create the *DeliveryService* channel, 
 //! use default values or a custom *ChannelConfig* argument. Then create a vector of the input data you need. 
 //! Feed that data into the *DeliveryService* by calling "*feed_feeder*" method. As soon as data starts being fed *Worker*s will work.
-//! working. Finally start getting the results with a "for" call to a mutable reference of the channel. 
+//! Finally start getting the results with a "for" call to a mutable reference of the channel. 
 //! Repeat feed and iterate as many times as needed.
 //! 
-//! '''
 //! 
 //!     use kik_sync_service::message::{Message, MessageData, MessageInput};
 //!     use kik_sync_service::channel::{DeliveryService};
@@ -259,7 +258,6 @@
 //!         }
 //!     }
 //! 
-//! '''
 //! 
 
 // This crate is a library

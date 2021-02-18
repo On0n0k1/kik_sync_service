@@ -9,12 +9,14 @@
 //! This module is not meant to be used directly. But the project is free and open source, so feel free to do as you please.
 //! 
 //! # Panics!
+//! 
 //! The receivers will be *Weak Arc* + *Mutex* references for the original receiver that is held by the parent *DeliveryService* type. 
 //! In other words, when *DeliveryService* drops, *Worker*s will lose the reference and drop without panicking. 
 //! But if they try to send a *Message* to the deliverer channel and get an *mpsc*'s *TrySendError::Disconnected* or *TrySendError::Poisoned* error, they will panic.
 //! 
 //! 
 //! # Contribute
+//! 
 //! There are currently no methods in kik_channel for catching dropped *Workers* due to panics. I, the original developer, On0n0k1 (Lucas Lemos), am not sure how to deal with it yet.
 //! Am also open for receiving any help regarding methods for checking the *Worker* threads for panics, reporting and/or restarting them as needed.
 //! 
